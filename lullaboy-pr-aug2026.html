@@ -63,6 +63,47 @@ a{color:inherit;text-decoration:none}
 .fg-c .fg-plus{font-size:11px;font-weight:600;color:var(--blue)}
 
 
+
+.sc.rate-tip{position:relative;cursor:default}
+.sc.rate-tip::after{
+  content:attr(data-rate);
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 8px);
+  transform:translateX(-50%) translateY(4px);
+  background:var(--ink);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.01em;
+  line-height:1;
+  white-space:nowrap;
+  padding:7px 9px;
+  border-radius:2px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .14s ease,transform .14s ease;
+  z-index:20;
+}
+.sc.rate-tip::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:100%;
+  transform:translateX(-50%);
+  border:4px solid transparent;
+  border-top-color:var(--ink);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .14s ease;
+  z-index:20;
+}
+.sc.rate-tip:hover::after{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.sc.rate-tip:hover::before{opacity:1}
+
 /* anchor media */
 .anchor-wrap{margin-bottom:44px}
 .anchor-kicker{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin:0 0 12px}
@@ -200,7 +241,7 @@ var C={
           metrics:{views:45000,likes:813,comments:27,shares:null,saves:null}}
       ]},
     {id:"dingo-performance",outlet:"Dingo Music",title:"TEXTED Live",
-      date:"Posted Aug 20",status:"live",
+      date:"Posted Aug 19",status:"live",
       platforms:[
         {platform:"Instagram",color:"ig",
           url:"https://www.instagram.com/dingo_music/",
@@ -258,9 +299,9 @@ h.push('<section class="hero"><h1>'+e(C.meta.talent)+'</h1><div class="hero-meta
 
 h.push('<section class="summary">');
 h.push('<div class="sc hl"><div class="sl"><span class="sdot"></span>Total Views</div><div class="sv" id="sv-v">'+n(tV)+'</div></div>');
-h.push('<div class="sc"><div class="sl"><span class="sdot"></span>Total Likes</div><div class="sv" id="sv-l">'+n(tL)+'</div></div>');
-h.push('<div class="sc"><div class="sl"><span class="sdot"></span>Total Comments</div><div class="sv" id="sv-c">'+n(tC)+'</div></div>');
-h.push('<div class="sc"><div class="sl"><span class="sdot"></span>Total Shares</div><div class="sv" id="sv-s">'+n(tS)+'</div></div>');
+h.push('<div class="sc rate-tip" data-rate="'+(tV?(tL/tV*100).toFixed(2):"0.00")+'% of total views"><div class="sl"><span class="sdot"></span>Total Likes</div><div class="sv" id="sv-l">'+n(tL)+'</div></div>');
+h.push('<div class="sc rate-tip" data-rate="'+(tV?(tC/tV*100).toFixed(2):"0.00")+'% of total views"><div class="sl"><span class="sdot"></span>Total Comments</div><div class="sv" id="sv-c">'+n(tC)+'</div></div>');
+h.push('<div class="sc rate-tip" data-rate="'+(tV?(tS/tV*100).toFixed(2):"0.00")+'% of total views"><div class="sl"><span class="sdot"></span>Total Shares</div><div class="sv" id="sv-s">'+n(tS)+'</div></div>');
 h.push('<div class="sc"><div class="sl"><span class="sdot"></span>Engagement</div><div class="sv" id="sv-e">'+eng.toFixed(2)+'%</div></div>');
 h.push('</section>');
 
@@ -363,6 +404,10 @@ if(YT_API_KEY){
       document.getElementById("sv-c").textContent=n(nC2);
       document.getElementById("sv-s").textContent=n(nS);
       document.getElementById("sv-e").textContent=(nV?((nL+nC2+nS)/nV*100):0).toFixed(2)+"%";
+      var rateCards=document.querySelectorAll(".sc.rate-tip");
+      if(rateCards[0])rateCards[0].setAttribute("data-rate",(nV?(nL/nV*100):0).toFixed(2)+"% of total views");
+      if(rateCards[1])rateCards[1].setAttribute("data-rate",(nV?(nC2/nV*100):0).toFixed(2)+"% of total views");
+      if(rateCards[2])rateCards[2].setAttribute("data-rate",(nV?(nS/nV*100):0).toFixed(2)+"% of total views");
       live.forEach(function(c){if(!c.platforms)return;var gv=0;c.platforms.forEach(function(p){gv+=p.metrics&&p.metrics.views||0});var gt=document.getElementById("gt-"+c.id);if(gt)gt.textContent=k(gv)});
       document.getElementById("ts").textContent="YouTube live \u00b7 Others "+C.meta.updated;
     }).catch(function(e2){console.log("YT error",e2)});
