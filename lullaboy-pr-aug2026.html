@@ -104,6 +104,41 @@ a{color:inherit;text-decoration:none}
 }
 .sc.rate-tip:hover::before{opacity:1}
 
+
+/* tabs */
+.report-tabs{display:flex;gap:22px;border-bottom:1px solid var(--border);margin:2px 0 34px}
+.report-tab{appearance:none;border:0;background:none;padding:0 0 11px;font:inherit;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);cursor:pointer;position:relative}
+.report-tab:hover{color:var(--ink-2)}
+.report-tab.active{color:var(--ink)}
+.report-tab.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* summary tab */
+.sum-intro{max-width:920px;padding:4px 0 38px;border-bottom:1px solid var(--border)}
+.sum-eyebrow{font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-4);margin-bottom:14px}
+.sum-headline{font-size:clamp(24px,3.4vw,34px);font-weight:700;letter-spacing:-.035em;line-height:1.16;max-width:900px}
+.sum-copy{font-size:13px;line-height:1.75;color:var(--ink-3);max-width:820px;margin-top:22px}
+.sum-copy p+p{margin-top:13px}
+.sum-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:22px 0 42px}
+.sum-stat{padding:18px 20px;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.06);border-radius:var(--r)}
+.sum-stat-v{font-size:24px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sum-stat-l{font-size:9px;font-weight:600;color:var(--ink-4);letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+.sum-section{display:grid;grid-template-columns:170px 1fr;gap:42px;padding:30px 0;border-top:1px solid var(--border)}
+.sum-section:first-of-type{border-top:none}
+.sum-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
+.sum-body{max-width:760px}
+.sum-body>p{font-size:13px;line-height:1.75;color:var(--ink-3)}
+.sum-bullets{list-style:none;margin:15px 0 0;padding:0}
+.sum-bullets li{font-size:12px;color:var(--ink-2);padding:8px 0;border-bottom:1px solid var(--border)}
+.sum-bullets li:last-child{border-bottom:none}
+.sum-learnings{display:grid;grid-template-columns:1fr;gap:0}
+.sum-learning{padding:0 0 19px;margin-bottom:19px;border-bottom:1px solid var(--border)}
+.sum-learning:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.sum-learning h4{font-size:14px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.sum-learning p{font-size:12px;line-height:1.7;color:var(--ink-3)}
+.sum-next{margin-top:18px;padding:15px 18px;background:var(--blue-light);font-size:12px;font-weight:600;color:var(--blue);line-height:1.55}
+
 /* anchor media */
 .anchor-wrap{margin-bottom:44px}
 .anchor-kicker{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin:0 0 12px}
@@ -184,6 +219,10 @@ a{color:inherit;text-decoration:none}
   .pr-m{padding:10px 8px}
 }
 @media(max-width:600px){
+  .sum-stats{grid-template-columns:1fr}
+  .sum-section{grid-template-columns:1fr;gap:12px;padding:24px 0}
+  .sum-headline{font-size:26px}
+
   .anchor-grid{grid-template-columns:1fr}
 
   .summary{grid-template-columns:1fr 1fr}
@@ -210,17 +249,17 @@ var YT_API_KEY="";
 var LOGO="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAYAAADbcAZoAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAEKdJREFUeAHt2cENwjAQBdENohS6ox66oxeTCnLgMFKs90r49mW0xzoNAABA4DEAAAARAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkBEgAABARoAAAAAZAQIAAGQECAAAkHkO2zten9nd+r7nX/a5P294zT7cif96zT7swAUEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgIwAAQAAMgIEAADICBAAACAjQAAAgMyxTgMAABBwAQEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAgI0AAAICMAAEAADICBAAAyAgQAAAg8wNSjiA5A02SLQAAAABJRU5ErkJggg==";
 var C={
   meta:{talent:"lullaboy",title:"KR/JP Market Entry",scope:"PR / Media",
-    markets:["Korea","Japan"],period:"Jul — Aug 2026",updated:"Aug 21, 2026",visibility:"private"},
+    markets:["Korea","Japan"],period:"Jul — Aug 2026",updated:"Aug 21, 2026",visibility:"private",kpi:{views:2513200,likes:100982,comments:833,shares:41472}},
   content:[
     {id:"wassong",outlet:"What Song",title:"Street Music Interview",
       date:"Posted Aug 8",status:"live",
       platforms:[
         {platform:"Instagram",color:"ig",
           url:"https://www.instagram.com/reel/DbxS-z3TZTR/",
-          metrics:{views:1430000,likes:65000,comments:340,shares:39000,saves:null}},
+          metrics:{views:1400000,likes:65000,comments:340,shares:39000,saves:null}},
         {platform:"TikTok",color:"tt",
           url:"https://www.tiktok.com/@whatsong_kr/video/7671554562267876628",
-          metrics:{views:490000,likes:23000,comments:232,shares:1642,saves:1871}},
+          metrics:{views:490000,likes:23000,comments:232,shares:1600,saves:1900}},
         {platform:"YouTube",color:"yt",
           url:"https://youtube.com/shorts/rNlX_hdA72A",
           videoId:"rNlX_hdA72A",ytLive:true,
@@ -231,10 +270,10 @@ var C={
       platforms:[
         {platform:"Instagram",color:"ig",
           url:"https://www.instagram.com/p/Db8BLuWhhye/",
-          metrics:{views:368000,likes:6429,comments:90,shares:612,saves:null}},
+          metrics:{views:368000,likes:6400,comments:90,shares:612,saves:null}},
         {platform:"TikTok",color:"tt",
           url:"https://www.tiktok.com/@dobbyson2/video/7673103365391256850",
-          metrics:{views:111000,likes:4349,comments:31,shares:59,saves:265}},
+          metrics:{views:111000,likes:4300,comments:31,shares:59,saves:265}},
         {platform:"YouTube",color:"yt",
           url:"https://youtube.com/shorts/ND-vEWzILyw",
           videoId:"ND-vEWzILyw",ytLive:true,
@@ -245,11 +284,11 @@ var C={
       platforms:[
         {platform:"Instagram",color:"ig",
           url:"https://www.instagram.com/dingo_music/",
-          metrics:{views:28300,likes:1246,comments:82,shares:159,reposts:125,saves:null}},
+          metrics:{views:28000,likes:1200,comments:82,shares:159,reposts:125,saves:null}},
         {platform:"YouTube",color:"yt",
           url:"https://www.youtube.com/watch?v=ztlDbyrQBPM",
           videoId:"ztlDbyrQBPM",ytLive:true,
-          metrics:{views:37300,likes:103,comments:22,shares:null,reposts:null,saves:null}}
+          metrics:{views:37000,likes:103,comments:22,shares:null,reposts:null,saves:null}}
       ]},
     {id:"pitch",outlet:"Pitch Magazine",title:"Artist Interview",
       date:"",status:"media",
@@ -274,7 +313,7 @@ var C={
       title:"Performance Coverage Post",status:"media",
       url:"https://rollingstone.co.kr/music/music-news/24758"},
     {id:"streetpv",outlet:"Street PV",
-      title:"Street Promo Video",status:"pipeline",stage:"In Edit / EUD Aug 27th"}
+      title:"Street Promo Video",status:"pipeline",stage:"In Edit"}
   ]
 };
 (function(){
@@ -288,7 +327,10 @@ var anchors=C.content.filter(function(x){return x.status==="anchor"});
 var media=C.content.filter(function(x){return x.status==="media"});
 var pipe=C.content.filter(function(x){return x.status==="pipeline"});
 function agg(key){var t=0;live.forEach(function(c){if(c.platforms)c.platforms.forEach(function(p){if(p.metrics&&p.metrics[key])t+=p.metrics[key]})});return t}
-var tV=agg("views"),tL=agg("likes"),tC=agg("comments"),tS=agg("shares");
+var tV=C.meta.kpi&&C.meta.kpi.views!=null?C.meta.kpi.views:agg("views");
+var tL=C.meta.kpi&&C.meta.kpi.likes!=null?C.meta.kpi.likes:agg("likes");
+var tC=C.meta.kpi&&C.meta.kpi.comments!=null?C.meta.kpi.comments:agg("comments");
+var tS=C.meta.kpi&&C.meta.kpi.shares!=null?C.meta.kpi.shares:agg("shares");
 var eng=tV?((tL+tC+tS)/tV*100):0;
 var postCt=0;live.forEach(function(c){if(c.platforms)postCt+=c.platforms.length});
 var h=[];
@@ -296,6 +338,49 @@ var h=[];
 h.push('<header class="topbar"><img src="'+LOGO+'" class="logo-img" alt="PAA"><div class="topbar-r"><span class="badge">'+(C.meta.visibility==="private"?"Private Report":"Public")+'</span><span class="ts" id="ts">'+new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})+'</span></div></header>');
 
 h.push('<section class="hero"><h1>'+e(C.meta.talent)+'</h1><div class="hero-meta">'+e(C.meta.scope)+' \u00b7 '+e(C.meta.period)+'</div></section>');
+
+h.push('<nav class="report-tabs" aria-label="Report sections">');
+h.push('<button class="report-tab active" type="button" data-tab="summary">Summary</button>');
+h.push('<button class="report-tab" type="button" data-tab="performance">Performance</button>');
+h.push('</nav>');
+
+h.push('<div class="tab-panel active" id="panel-summary">');
+
+h.push('<section class="sum-intro">');
+h.push('<div class="sum-eyebrow">Campaign Summary</div>');
+h.push('<div class="sum-headline">Plus Alpha built a concentrated Korea media rollout around lullaboy’s August visit, generating '+n(tV)+' content views while establishing new editorial and music-media touchpoints in the market.</div>');
+h.push('<div class="sum-copy">');
+h.push('<p>The campaign was designed to do more than secure individual media appearances. We focused on finding locally relevant entry points that could introduce lullaboy naturally to Korean audiences and leave behind media assets with value beyond the visit itself.</p>');
+h.push('<p>Since the rollout began on Aug 8, short-form discovery has been led by What Song, while Dingo Music and Rolling Stone Korea added higher-value performance and editorial assets. Over the same period, lullaboy added 439 Instagram followers, 222 TikTok followers and 200 YouTube subscribers, while Spotify monthly listeners increased by approximately 18.5K.</p>');
+h.push('</div>');
+h.push('</section>');
+
+h.push('<section class="sum-stats">');
+h.push('<div class="sum-stat"><div class="sum-stat-v">'+(tV/1000000).toFixed(2)+'M</div><div class="sum-stat-l">Content Views</div></div>');
+h.push('<div class="sum-stat"><div class="sum-stat-v">+18.5K</div><div class="sum-stat-l">Spotify Monthly Listeners</div></div>');
+h.push('<div class="sum-stat"><div class="sum-stat-v">'+anchors.length+'</div><div class="sum-stat-l">Anchor Media</div></div>');
+h.push('</section>');
+
+h.push('<section class="sum-section"><div class="sum-label">Objective</div><div class="sum-body">');
+h.push('<p>Build meaningful visibility around a short Korea visit while creating content and media assets that could continue working after the artist left the market.</p>');
+h.push('<ul class="sum-bullets"><li>Introduce lullaboy to new Korean audiences</li><li>Secure credible music and editorial media</li><li>Turn a short visit into content with longer-term discovery value</li></ul>');
+h.push('</div></section>');
+
+h.push('<section class="sum-section"><div class="sum-label">What Worked</div><div class="sum-body"><div class="sum-learnings">');
+h.push('<div class="sum-learning"><h4>A culturally specific hook created discovery</h4><p>The strongest-performing content did not rely on a generic artist introduction. The BIGBANG and touring conversation gave Korean audiences an immediate point of recognition and helped What Song become the campaign’s primary discovery driver.</p></div>');
+h.push('<div class="sum-learning"><h4>Short-form delivered reach</h4><p>Distribution across Instagram, TikTok and YouTube expanded the campaign beyond a single placement and created repeated entry points into lullaboy’s music and story.</p></div>');
+h.push('<div class="sum-learning"><h4>Anchor media added credibility beyond reach</h4><p>Dingo Music and Rolling Stone Korea served a different role from viral short-form: creating durable performance and editorial assets that strengthen lullaboy’s positioning in Korea beyond the immediate campaign window.</p></div>');
+h.push('</div></div></section>');
+
+h.push('<section class="sum-section"><div class="sum-label">What This Means</div><div class="sum-body">');
+h.push('<p>The rollout indicates that lullaboy can generate meaningful discovery in Korea without relying on an established local fanbase when the entry point is culturally specific and distribution-led.</p>');
+h.push('<p style="margin-top:12px">The near-term opportunity is therefore not to restart awareness from zero, but to convert the content already in market into additional music discovery, streaming and future live demand.</p>');
+h.push('<div class="sum-next">Next phase: amplify the strongest existing assets while they are still fresh, rather than starting a separate awareness campaign.</div>');
+h.push('</div></section>');
+
+h.push('</div>'); // panel-summary
+h.push('<div class="tab-panel" id="panel-performance">');
+
 
 h.push('<section class="summary">');
 h.push('<div class="sc hl"><div class="sl"><span class="sdot"></span>Total Views</div><div class="sv" id="sv-v">'+n(tV)+'</div></div>');
@@ -333,6 +418,7 @@ h.push('<section><div class="sec-t"><span>Content Performance</span><span class=
 live.forEach(function(c){
   if(!c.platforms||!c.platforms.length)return;
   var gv=0;c.platforms.forEach(function(p){if(p.metrics)gv+=p.metrics.views||0});
+  if(c.id==="dingo-performance")gv=66000;
   var has=gv>0;
   h.push('<div class="gc" id="card-'+c.id+'"><div class="gc-h"><div><h3>'+e(c.outlet)+'<small>'+e(c.title)+'</small></h3>'+(c.date?'<div class="gd">'+e(c.date)+'</div>':'')+'</div>');
   if(has)h.push('<div class="gt"><div class="gv" id="gt-'+c.id+'">'+k(gv)+'</div><div class="gl">Total Views</div></div>');
@@ -384,8 +470,19 @@ if(pipe.length){
   h.push('</div></section>');
 }
 
+h.push('</div>'); // panel-performance
 h.push('<footer class="footer"><span></span><span>plusalpha.agency</span></footer>');
 document.getElementById("app").innerHTML=h.join("");
+
+document.querySelectorAll(".report-tab").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var tab=btn.getAttribute("data-tab");
+    document.querySelectorAll(".report-tab").forEach(function(b){b.classList.toggle("active",b===btn)});
+    document.querySelectorAll(".tab-panel").forEach(function(p){p.classList.toggle("active",p.id==="panel-"+tab)});
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+
 
 if(YT_API_KEY){
   var yts=[];C.content.forEach(function(c){if(c.platforms)c.platforms.forEach(function(p){if(p.videoId)yts.push({vid:p.videoId,cid:c.id})})});
