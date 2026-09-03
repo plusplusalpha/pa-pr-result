@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plus Alpha Reports</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#fff;color:#0a0a0a}
+body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.page{min-height:100vh;display:flex;flex-direction:column;padding:20px clamp(18px,4vw,40px)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand-logo-frame{width:56px;height:24px;overflow:hidden;position:relative;flex:0 0 auto}
+.brand-logo{position:absolute;width:112px;height:112px;max-width:none;left:-28px;top:-45px;display:block}
+.private{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#888;border:1px solid #d8d8d8;padding:4px 7px}
+.center{flex:1;display:flex;align-items:center;justify-content:center}
+.box{width:min(100%,340px);padding:28px 0}
+.eyebrow{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#999;margin-bottom:12px}
+h1{font-size:24px;letter-spacing:-.035em;line-height:1.05;margin:0 0 9px;font-weight:650}
+.desc{font-size:11px;line-height:1.6;color:#777;margin:0 0 26px}
+.field{margin-bottom:18px}
+label{display:block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#777;margin-bottom:5px}
+.row{display:grid;grid-template-columns:1fr;border-bottom:1px solid #111}
+input{border:0;outline:0;padding:10px 0;font:inherit;font-size:12px;background:transparent;min-width:0}
+button{font:inherit;cursor:pointer}
+.enter{width:100%;margin-top:3px;border:1px solid #111;background:#fff;padding:10px 12px;font-size:9px;font-weight:650;letter-spacing:.08em}
+.enter:hover{background:#111;color:#fff}
+.error{font-size:10px;color:#555;margin-top:10px;display:none}
+.footer{font-size:8px;color:#aaa;letter-spacing:.06em}
+@media(max-width:600px){.page{padding:16px}.box{padding:20px 0}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <span class="brand-logo-frame"><img class="brand-logo" src="/pa-logo.png" alt="PA"></span>
+    <div class="private">Client</div>
+  </header>
+
+  <main class="center">
+    <section class="box">
+      <div class="eyebrow">Client Access</div>
+      <h1>Reports</h1>
+      <p class="desc">Enter your ID and password to continue.</p>
+
+      <form method="post" action="/api/login" autocomplete="off">
+        <div class="field">
+          <label for="client-id">ID</label>
+          <div class="row">
+            <input id="client-id" name="clientId" type="text" required autofocus autocomplete="username" autocapitalize="none" spellcheck="false">
+          </div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="row">
+            <input id="password" name="password" type="password" required autocomplete="current-password">
+          </div>
+        </div>
+        <button class="enter" type="submit">ENTER →</button>
+        <div class="error" id="error">Incorrect ID or password.</div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">PLUS ALPHA AGENCY · CLIENT</footer>
+</div>
+<script>
+const q = new URLSearchParams(location.search);
+if (q.get("error") === "1") {
+  document.getElementById("error").style.display = "block";
+}
+</script>
+</body>
+</html>

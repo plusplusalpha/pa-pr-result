@@ -1,0 +1,8 @@
+{
+  "name": "pa-client-report-portal",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/functions": "^3.1.4"
+  }
+}
